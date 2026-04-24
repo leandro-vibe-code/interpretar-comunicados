@@ -101,6 +101,10 @@ button {
   background: #f8fafc;
   border-radius: 8px;
   padding: 0.6rem;
+  cursor: pointer;
+  border: 0;
+  text-align: left;
+  width: 100%;
 }
 
 .evento strong {
@@ -110,6 +114,53 @@ button {
 .evento small,
 .resumo {
   color: var(--muted);
+}
+
+.evento:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: -0.3rem 0 0.7rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.modal {
+  border: 0;
+  border-radius: 12px;
+  width: min(92vw, 520px);
+  padding: 0;
+}
+
+.modal::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-content {
+  padding: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.modal-lista {
+  list-style: disc;
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
 }
 
 .destaque {

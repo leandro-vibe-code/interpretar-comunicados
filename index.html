@@ -23,6 +23,7 @@
 
       <section class="card">
         <h2>Próximos eventos</h2>
+        <p class="hint">Toque em um evento para ver detalhes de estudo.</p>
         <ul id="eventos-lista" class="eventos"></ul>
       </section>
 
@@ -44,6 +45,18 @@
     <footer class="rodape">
       <small>Funciona offline após o primeiro acesso (PWA).</small>
     </footer>
+
+    <dialog id="evento-modal" class="modal">
+      <article class="modal-content">
+        <header class="modal-header">
+          <h3 id="modal-titulo"></h3>
+          <button id="modal-fechar" type="button" aria-label="Fechar modal">✕</button>
+        </header>
+        <p id="modal-meta" class="resumo"></p>
+        <h4>Páginas para estudar</h4>
+        <ul id="modal-paginas" class="modal-lista"></ul>
+      </article>
+    </dialog>
 
     <script src="/app.js" defer></script>
   </body>

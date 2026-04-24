@@ -5,7 +5,8 @@
 Este repositório agora contém uma versão inicial funcional do PWA em HTML/CSS/JavaScript puro, com:
 
 - seleção de turmas monitoradas
-- lista de próximos eventos
+- lista de próximos eventos (com clique para abrir modal de estudo)
+- modal de detalhes do evento com páginas do livro para estudo
 - tela **Mochila de Amanhã** com checklist persistido em `localStorage`
 - notificações sugeridas
 - `manifest.webmanifest` + `service worker` para instalação/offline

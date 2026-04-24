@@ -11,7 +11,8 @@ const EVENTOS = [
     disciplina: "Matemática",
     tipo: "Prova",
     professor: "Prof. Ricardo",
-    mochila: ["Calculadora", "Livro de Matemática"]
+    mochila: ["Calculadora", "Livro de Matemática"],
+    paginasEstudo: ["Livro base: páginas 42 a 57", "Exercícios: páginas 58 e 59"]
   },
   {
     id: "his-2005",
@@ -20,7 +21,8 @@ const EVENTOS = [
     disciplina: "História",
     tipo: "Entrega de trabalho",
     professor: "Profa. Clara",
-    mochila: ["Cartolina azul", "Trabalho impresso"]
+    mochila: ["Cartolina azul", "Trabalho impresso"],
+    paginasEstudo: ["Capítulo de referência: páginas 110 a 118"]
   },
   {
     id: "cien-1305",
@@ -29,7 +31,8 @@ const EVENTOS = [
     disciplina: "Ciências",
     tipo: "Aula de laboratório",
     professor: "Prof. André",
-    mochila: ["Jaleco", "Óculos de proteção"]
+    mochila: ["Jaleco", "Óculos de proteção"],
+    paginasEstudo: ["Revisão teórica: páginas 72 a 76"]
   }
 ];
 
@@ -45,6 +48,25 @@ const mochilaLista = document.getElementById("mochila-lista");
 const notificacoesLista = document.getElementById("notificacoes-lista");
 const resumoMochila = document.getElementById("resumo-mochila");
 const botaoLimparChecklist = document.getElementById("limpar-checklist");
+const eventoModal = document.getElementById("evento-modal");
+const modalTitulo = document.getElementById("modal-titulo");
+const modalMeta = document.getElementById("modal-meta");
+const modalPaginas = document.getElementById("modal-paginas");
+const modalFechar = document.getElementById("modal-fechar");
+
+function abrirModalEvento(evento) {
+  modalTitulo.textContent = `${evento.disciplina} — ${evento.tipo}`;
+  modalMeta.textContent = `${new Date(evento.data).toLocaleDateString("pt-BR")} · ${evento.turma} · ${evento.professor}`;
+  modalPaginas.innerHTML = "";
+
+  (evento.paginasEstudo ?? ["Sem páginas cadastradas."]).forEach((pagina) => {
+    const li = document.createElement("li");
+    li.textContent = pagina;
+    modalPaginas.append(li);
+  });
+
+  eventoModal.showModal();
+}
 
 function loadStorage(key, fallback) {
   const value = localStorage.getItem(key);
@@ -107,11 +129,15 @@ function renderEventos() {
     .sort((a, b) => a.data.localeCompare(b.data))
     .forEach((evento) => {
       const li = document.createElement("li");
-      li.className = "evento";
-      li.innerHTML = `
+      const botaoEvento = document.createElement("button");
+      botaoEvento.className = "evento";
+      botaoEvento.type = "button";
+      botaoEvento.innerHTML = `
         <strong>${evento.disciplina} — ${evento.tipo}</strong>
         <small>${new Date(evento.data).toLocaleDateString("pt-BR")} · ${evento.turma} · ${evento.professor}</small>
       `;
+      botaoEvento.addEventListener("click", () => abrirModalEvento(evento));
+      li.append(botaoEvento);
       eventosLista.append(li);
     });
 }
@@ -168,6 +194,13 @@ botaoLimparChecklist.addEventListener("click", () => {
   checklistStatus = {};
   saveStorage(STORAGE_MOCHILA, checklistStatus);
   renderMochila();
+});
+
+modalFechar.addEventListener("click", () => eventoModal.close());
+eventoModal.addEventListener("click", (event) => {
+  if (event.target === eventoModal) {
+    eventoModal.close();
+  }
 });
 
 function registrarServiceWorker() {
