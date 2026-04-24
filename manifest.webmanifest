@@ -1,0 +1,22 @@
+{
+  "name": "Agenda Escolar Inteligente",
+  "short_name": "Agenda Escolar",
+  "description": "PWA para comunicados escolares, calendário acadêmico e checklist da mochila.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f6fb",
+  "theme_color": "#2563eb",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

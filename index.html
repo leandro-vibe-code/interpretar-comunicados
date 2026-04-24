@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="description" content="PWA para organização de comunicados escolares e checklist da mochila." />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Agenda Escolar Inteligente</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Agenda Escolar Inteligente</h1>
+      <p>Provas, tarefas e mochila de amanhã em um só lugar.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Turmas monitoradas</h2>
+        <form id="turmas-form" class="chips"></form>
+      </section>
+
+      <section class="card">
+        <h2>Próximos eventos</h2>
+        <ul id="eventos-lista" class="eventos"></ul>
+      </section>
+
+      <section class="card destaque">
+        <div class="card-title-row">
+          <h2>Mochila de Amanhã</h2>
+          <button id="limpar-checklist" type="button">Limpar</button>
+        </div>
+        <p id="resumo-mochila" class="resumo"></p>
+        <ul id="mochila-lista" class="checklist"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Notificações sugeridas</h2>
+        <ul id="notificacoes-lista" class="notificacoes"></ul>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <small>Funciona offline após o primeiro acesso (PWA).</small>
+    </footer>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
