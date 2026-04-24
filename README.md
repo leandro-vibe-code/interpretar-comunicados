@@ -19,6 +19,26 @@ python3 -m http.server 4173
 
 Depois, acesse `http://localhost:4173`.
 
+### Subir stack completa com Docker Compose
+
+1. Copie as variáveis de ambiente:
+
+```bash
+cp .env.example .env
+```
+
+2. Suba os serviços (`n8n`, `postgres`, `notebooklm-mcp` e `pwa`):
+
+```bash
+docker compose up -d --build
+```
+
+3. Acesse:
+
+- PWA: `http://localhost:8080`
+- n8n: `http://localhost:5678`
+- NotebookLM MCP adapter: `http://localhost:8000/health`
+
 ---
 
 ## Descrição ampliada do sistema (com controle de itens da mochila)
