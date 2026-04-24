@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgres:latest
     container_name: interpretar-postgres
     restart: unless-stopped
     environment:
@@ -18,7 +18,7 @@ services:
       retries: 5
 
   n8n:
-    image: n8nio/n8n:1.89.2
+    image: n8nio/n8n:latest
     container_name: interpretar-n8n
     restart: unless-stopped
     depends_on:
@@ -43,12 +43,13 @@ services:
       NOTEBOOKLM_MCP_URL: http://notebooklm-mcp:8000
     volumes:
       - n8n_data:/home/node/.n8n
+      - ./n8n/workflows:/opt/n8n/workflows:ro
 
   notebooklm-mcp:
-    build:
-      context: ./notebooklm-mcp
+    image: node:latest
     container_name: interpretar-notebooklm-mcp
     restart: unless-stopped
+    command: ["npx", "-y", "notebooklm-mcp@latest"]
     environment:
       NOTEBOOKLM_API_BASE_URL: ${NOTEBOOKLM_API_BASE_URL:-https://notebooklm.google.com}
       NOTEBOOKLM_API_KEY: ${NOTEBOOKLM_API_KEY:-change-me}

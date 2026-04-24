@@ -39,6 +39,14 @@ docker compose up -d --build
 - n8n: `http://localhost:5678`
 - NotebookLM MCP adapter: `http://localhost:8000/health`
 
+4. No n8n, importe o workflow de exemplo para testar a chamada HTTP ao NotebookLM MCP:
+
+```bash
+n8n import:workflow --input=/opt/n8n/workflows/notebooklm-mcp-http-call.json
+```
+
+> O arquivo de exemplo é montado via Docker Compose em `./n8n/workflows/notebooklm-mcp-http-call.json`.
+
 ---
 
 ## Descrição ampliada do sistema (com controle de itens da mochila)
